@@ -3,12 +3,48 @@
  */
 
 .app-container {
+  width: 100%;
   max-width: 1540px;
   margin: 0 auto;
   padding: 16px 24px 60px;
   display: flex;
   flex-direction: column;
   gap: 28px;
+  transition: max-width var(--transition-normal), padding var(--transition-normal);
+}
+
+@media (min-width: 1600px) {
+  .app-container {
+    max-width: 1760px;
+    padding: 20px 32px 70px;
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .app-container {
+    max-width: 2040px;
+    padding: 24px 40px 80px;
+    gap: 36px;
+  }
+}
+
+@media (min-width: 2400px) {
+  /* 1440p QHD Native (2560px) & Ultrawide */
+  .app-container {
+    max-width: 2380px;
+    padding: 28px 48px 90px;
+    gap: 40px;
+  }
+}
+
+@media (min-width: 3200px) {
+  /* 4K UHD */
+  .app-container {
+    max-width: 2900px;
+    padding: 36px 64px 110px;
+    gap: 48px;
+  }
 }
 
 /* ==========================================================================
@@ -320,7 +356,83 @@
   padding-right: 6px;
 }
 
-/* Responsive adjustments */
+/* Vertical space optimization for tall displays (1440p has 1440px height) */
+@media (min-height: 850px) {
+  .characters-grid {
+    max-height: clamp(680px, 58vh, 880px);
+  }
+}
+
+@media (min-height: 1100px) {
+  .characters-grid {
+    max-height: clamp(800px, 64vh, 1200px);
+  }
+}
+
+/* Widescreen & 1440p (2560px) Scaling */
+@media (min-width: 1920px) {
+  .app-header {
+    padding: 16px 36px;
+  }
+  .brand-icon {
+    width: 48px;
+    height: 48px;
+  }
+  .brand-text h1 {
+    font-size: 1.55rem;
+  }
+  .mode-tab {
+    padding: 10px 22px;
+  }
+  .team-slots-container {
+    gap: 24px;
+    min-height: 330px;
+  }
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (min-width: 2400px) {
+  /* 1440p Native 2560px & Ultrawide */
+  .app-header {
+    padding: 20px 42px;
+    border-radius: 28px;
+  }
+  .brand-icon {
+    width: 56px;
+    height: 56px;
+  }
+  .brand-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+  .brand-text h1 {
+    font-size: 1.75rem;
+  }
+  .brand-text span {
+    font-size: 0.85rem;
+  }
+  .mode-tab {
+    padding: 12px 26px;
+    font-size: 1.15rem;
+  }
+  .icon-btn {
+    width: 46px;
+    height: 46px;
+  }
+  .team-slots-container {
+    gap: 28px;
+    min-height: 360px;
+  }
+  .characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
+    gap: 22px;
+  }
+}
+
+/* Responsive adjustments for mobile and tablets */
 @media (max-width: 1024px) {
   .team-slots-container {
     grid-template-columns: 1fr;

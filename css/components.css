@@ -1239,3 +1239,202 @@
   }
 }
 
+/* ==========================================================================
+   Widescreen (1080p+), 1440p (QHD) & 4K (UHD) Scaling
+   ========================================================================== */
+@media (min-width: 1920px) {
+  /* Matrix Team Slot Scaling */
+  .team-slot {
+    min-height: 310px;
+  }
+  .slot-avatar-wrapper {
+    width: 116px;
+    height: 116px;
+    border-radius: 22px;
+  }
+  .slot-avatar-img {
+    width: 104px;
+    height: 104px;
+  }
+  .slot-character-name {
+    font-size: 1.25rem;
+  }
+
+  /* Card Scaling in Pool */
+  .character-card {
+    padding: 12px;
+    gap: 10px;
+  }
+  .card-name {
+    font-size: 1.05rem;
+  }
+  .energy-control-container {
+    padding: 7px 9px;
+  }
+
+  /* Filter Controls */
+  .search-box-wrapper {
+    max-width: 360px;
+  }
+  .filter-pill {
+    padding: 7px 16px;
+    font-size: 0.88rem;
+  }
+  .quick-energy-input {
+    width: 72px;
+    height: 36px;
+    font-size: 1.15rem;
+  }
+
+  /* Modals Scaling */
+  .modal-picker-window {
+    max-width: 1600px;
+    width: min(1600px, 94vw);
+    height: min(1000px, 88vh);
+    max-height: 88vh;
+    padding: 28px 32px;
+    gap: 20px;
+  }
+  .picker-characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(136px, 1fr));
+    gap: 14px;
+  }
+  .picker-card-avatar {
+    width: 74px;
+    height: 74px;
+  }
+  .modal-deploy-window {
+    max-width: 980px;
+    width: min(980px, 92vw);
+    padding: 34px 40px;
+  }
+  .modal-team-avatar {
+    width: 86px;
+    height: 86px;
+  }
+  .modal-history-window {
+    max-width: 1200px;
+    width: min(1200px, 92vw);
+    height: min(920px, 86vh);
+    max-height: 86vh;
+    padding: 28px 32px;
+  }
+}
+
+@media (min-width: 2400px) {
+  /* 1440p (2560px QHD) & Ultrawide */
+  /* Matrix Team Slot Scaling */
+  .team-slot {
+    min-height: 350px;
+  }
+  .slot-avatar-wrapper {
+    width: 132px;
+    height: 132px;
+    border-radius: 26px;
+  }
+  .slot-avatar-img {
+    width: 118px;
+    height: 118px;
+  }
+  .slot-character-name {
+    font-size: 1.45rem;
+  }
+  .slot-badges-row .element-pill,
+  .slot-badges-row .weapon-pill {
+    padding: 3px 12px;
+    font-size: 0.85rem;
+  }
+  .slot-energy-deduction-badge {
+    font-size: 0.95rem;
+    padding: 6px 16px;
+  }
+  .slot-change-btn {
+    padding: 8px 18px;
+    font-size: 0.92rem;
+  }
+
+  /* Card Scaling in Pool */
+  .character-card {
+    padding: 14px;
+    gap: 12px;
+    border-radius: var(--radius-lg);
+  }
+  .card-name {
+    font-size: 1.2rem;
+  }
+  .energy-control-container {
+    padding: 8px 12px;
+    gap: 6px;
+  }
+  .energy-num-input {
+    width: 62px;
+    height: 30px;
+    font-size: 1.1rem;
+  }
+  .energy-step-btn {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+
+  /* Filter Controls */
+  .search-box-wrapper {
+    max-width: 440px;
+  }
+  .search-box-wrapper input {
+    height: 44px;
+    font-size: 1.05rem;
+  }
+  .filter-pill {
+    padding: 8px 20px;
+    font-size: 0.98rem;
+  }
+  .quick-energy-input {
+    width: 84px;
+    height: 42px;
+    font-size: 1.3rem;
+  }
+
+  /* Modals Scaling */
+  .modal-picker-window {
+    max-width: 1960px;
+    width: min(1960px, 92vw);
+    height: min(1180px, 88vh);
+    max-height: 88vh;
+    padding: 32px 42px;
+    gap: 24px;
+  }
+  .picker-characters-grid {
+    grid-template-columns: repeat(auto-fill, minmax(154px, 1fr));
+    gap: 16px;
+  }
+  .picker-card-avatar {
+    width: 86px;
+    height: 86px;
+  }
+  .picker-card-name {
+    font-size: 1.05rem;
+  }
+  .picker-card-energy-badge {
+    font-size: 0.88rem;
+    padding: 3px 10px;
+  }
+  .modal-deploy-window {
+    max-width: 1180px;
+    width: min(1180px, 90vw);
+    padding: 44px 50px;
+  }
+  .modal-team-avatar {
+    width: 104px;
+    height: 104px;
+  }
+  .modal-history-window {
+    max-width: 1460px;
+    width: min(1460px, 90vw);
+    height: min(1060px, 86vh);
+    max-height: 86vh;
+    padding: 36px 46px;
+  }
+}
+
+
