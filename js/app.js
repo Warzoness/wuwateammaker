@@ -11,6 +11,23 @@
 import { state } from './state.js';
 import { sound } from './audio.js';
 
+/* ─── Global Image Fallback Handler ────────────────────────────────────────── */
+// Seamlessly fallback between 'data/' and 'public/data/' if one path fails
+window.addEventListener('error', (event) => {
+  const target = event.target;
+  if (target && target.tagName === 'IMG' && !target.dataset.triedFallback) {
+    target.dataset.triedFallback = '1';
+    const currentSrc = target.getAttribute('src') || '';
+    if (currentSrc.startsWith('data/')) {
+      target.src = 'public/' + currentSrc;
+    } else if (currentSrc.startsWith('public/data/')) {
+      target.src = currentSrc.replace('public/', '');
+    } else if (currentSrc.includes('/data/')) {
+      target.src = currentSrc.replace('/data/', '/public/data/');
+    }
+  }
+}, true);
+
 /* ─── DOM refs ─────────────────────────────────────────────────────────────── */
 const teamSlotsContainer = document.getElementById('team-slots-container');
 const charactersGrid = document.getElementById('characters-grid');
@@ -773,11 +790,44 @@ function renderTeamListModal() {
 /* ═══════════════════════════════════════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════════════════════════════════════ */
+function checkImageBase() {
+  const probe = new Image();
+  probe.onerror = () => {
+    // If 'data/Aalto.png' fails to load directly, update in-memory paths to 'public/data/'
+    state.characters.forEach((c) => {
+      if (c.image && c.image.startsWith('data/')) {
+        c.image = 'public/' + c.image;
+      }
+    });
+    // Update cached cards
+    cardCache.forEach((card, charId) => {
+      const img = card.querySelector('.card-avatar-img');
+      const char = state.getCharacterById(charId);
+      if (img && char) {
+        img.src = char.image;
+      }
+    });
+    // Update saved teams
+    state.savedTeams.forEach((team) => {
+      team.members.forEach((m) => {
+        if (m.image && m.image.startsWith('data/')) {
+          m.image = 'public/' + m.image;
+        }
+      });
+    });
+    scheduleRender();
+  };
+  probe.src = 'data/Aalto.png';
+}
+
 function init() {
   soundIcon.textContent = sound.isMuted() ? '🔇' : '🔊';
   btnToggleSound.classList.toggle('active', !sound.isMuted());
 
   setupEvents();
+
+  // Proactively verify image accessibility
+  checkImageBase();
 
   // Build pool cards once upfront
   buildPoolCards();
