@@ -1,0 +1,79 @@
+/**
+ * Wuthering Waves Design Tokens & Aesthetic Theme Variables
+ */
+:root {
+  /* Core Backgrounds */
+  --bg-primary: #07090e;
+  --bg-secondary: #0d121d;
+  --bg-card: rgba(16, 23, 36, 0.78);
+  --bg-card-hover: rgba(22, 32, 50, 0.88);
+  --bg-glass: rgba(13, 18, 29, 0.72);
+  --bg-input: rgba(9, 13, 22, 0.9);
+
+  /* Border & Accents */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(245, 196, 81, 0.6);
+  --border-cyan: rgba(56, 189, 248, 0.5);
+
+  /* Wuthering Waves Signature Colors */
+  --wuwa-gold: #f5c451;
+  --wuwa-gold-bright: #ffe680;
+  --wuwa-gold-dark: #b8860b;
+  --wuwa-cyan: #38bdf8;
+  --wuwa-blue: #0284c7;
+  --wuwa-purple: #a855f7;
+
+  /* Rarity Colors */
+  --rarity-5: #f5c451;
+  --rarity-5-glow: rgba(245, 196, 81, 0.35);
+  --rarity-5-bg: linear-gradient(135deg, rgba(245, 196, 81, 0.25) 0%, rgba(184, 134, 11, 0.08) 100%);
+  --rarity-4: #c084fc;
+  --rarity-4-glow: rgba(192, 132, 252, 0.35);
+  --rarity-4-bg: linear-gradient(135deg, rgba(192, 132, 252, 0.22) 0%, rgba(107, 33, 168, 0.08) 100%);
+
+  /* Element Colors */
+  --elem-glacio: #38bdf8;
+  --elem-glacio-glow: rgba(56, 189, 248, 0.35);
+  --elem-electro: #c084fc;
+  --elem-electro-glow: rgba(192, 132, 252, 0.35);
+  --elem-aero: #34d399;
+  --elem-aero-glow: rgba(52, 211, 153, 0.35);
+  --elem-havoc: #f43f5e;
+  --elem-havoc-glow: rgba(244, 63, 94, 0.35);
+  --elem-spectro: #facc15;
+  --elem-spectro-glow: rgba(250, 204, 21, 0.35);
+  --elem-fusion: #fb923c;
+  --elem-fusion-glow: rgba(251, 146, 60, 0.35);
+
+  /* Text Colors */
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --text-highlight: #ffffff;
+
+  /* State Colors */
+  --status-success: #10b981;
+  --status-warning: #f59e0b;
+  --status-danger: #ef4444;
+  --status-exhausted: #475569;
+
+  /* Typography */
+  --font-display: 'Rajdhani', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Shadows & Glows */
+  --shadow-card: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  --shadow-gold-glow: 0 0 24px rgba(245, 196, 81, 0.3);
+  --shadow-cyan-glow: 0 0 24px rgba(56, 189, 248, 0.3);
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  /* Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}

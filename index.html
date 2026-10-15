@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WuWa Matrix Team Maker | Xây Dựng Đội Hình Wuthering Waves</title>
+  <meta name="description" content="Ứng dụng xây dựng và tối ưu đội hình Wuthering Waves chế độ Matrix với hệ thống quản lý năng lượng và kéo thả trực quan.">
+  <link rel="icon" type="image/png" href="data/Rover.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>SOLARIS MATRIX</h1>
+          <span>WuWa Team Maker</span>
+        </div>
+      </div>
+
+      <!-- Mode Switcher Tabs -->
+      <nav class="mode-nav" aria-label="Game Modes">
+        <button class="mode-tab active" id="tab-matrix">
+          <span>⚡ Matrix Mode</span>
+        </button>
+        <button class="mode-tab disabled" id="tab-tower" title="Sắp ra mắt">
+          <span>⚔️ Tower of Adversity</span>
+          <span class="tag-badge">Sắp ra mắt</span>
+        </button>
+        <button class="mode-tab disabled" id="tab-illusive" title="Sắp ra mắt">
+          <span>🌌 Illusive Realm</span>
+          <span class="tag-badge">Sắp ra mắt</span>
+        </button>
+      </nav>
+
+      <!-- Global Controls -->
+      <div class="header-controls">
+        <button class="icon-btn" id="btn-toggle-sound" title="Bật/Tắt âm thanh hiệu ứng" aria-label="Toggle Sound">
+          <span id="sound-icon">🔊</span>
+        </button>
+        <button class="btn btn-secondary" id="btn-view-history" style="font-size: 0.85rem; padding: 7px 14px;">
+          <span>📋 Danh Sách Team (0)</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Matrix Arena: Team Formation -->
+    <section class="glass-panel matrix-arena-section" id="matrix-arena">
+      <div class="arena-header">
+        <div class="arena-title-group">
+          <span class="stage-badge" id="current-stage-display">📋 0 TEAM ĐÃ LƯU</span>
+          <h2>Xây Dựng Đội Hình</h2>
+        </div>
+
+        <div class="arena-actions">
+          <button class="btn btn-danger-ghost" id="btn-clear-squad" title="Gỡ tất cả và hoàn lại năng lượng">
+            <span>↺ Xóa Đội Hình</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3 Slots Container -->
+      <div class="team-slots-container" id="team-slots-container">
+        <!-- Rendered by JavaScript: 3 Slots -->
+      </div>
+
+      <!-- Arena Footer Bar -->
+      <div class="arena-footer-bar">
+        <div class="squad-completion-status">
+          <div class="status-indicator-dots" id="status-dots">
+            <span class="status-dot" id="dot-0"></span>
+            <span class="status-dot" id="dot-1"></span>
+            <span class="status-dot" id="dot-2"></span>
+          </div>
+          <div class="status-text" id="squad-status-text">
+            Tiến độ: <strong id="squad-count-text">0 / 3</strong> nhân vật (Chưa đủ điều kiện)
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-deploy-run" id="btn-deploy-matrix" disabled>
+          <span id="deploy-btn-text">Cần Đủ 3 Nhân Vật Để Lưu Team</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Character Pool Section -->
+    <section class="glass-panel character-pool-section" id="character-pool">
+      <div class="pool-header">
+        <div class="pool-title-group">
+          <h2>Kho Resonator</h2>
+          <span class="pool-counter" id="pool-counter">Hiển thị: <strong>60</strong> / 60</span>
+        </div>
+      </div>
+
+      <!-- Energy Quick Bar & Filters Panel -->
+      <div class="controls-master-panel">
+        
+        <!-- Energy Global Quick Setup -->
+        <div class="quick-energy-bar">
+          <div class="quick-energy-group">
+            <label for="global-energy-input">⚡ Cài đặt năng lượng mặc định:</label>
+            <input type="number" id="global-energy-input" class="quick-energy-input" min="1" max="99" value="4">
+            <button class="btn btn-secondary" id="btn-apply-global-energy">Áp dụng cho tất cả</button>
+          </div>
+
+          <div class="quick-energy-actions">
+            <button class="btn btn-secondary" id="btn-reset-all-energy" title="Khôi phục năng lượng tối đa cho tất cả">
+              <span>↻ Khôi Phục Năng Lượng</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="filters-row">
+          <!-- Search box -->
+          <div class="search-box-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Tìm theo tên, nguyên tố, vũ khí...">
+            <button class="search-clear-btn" id="search-clear-btn" style="display: none;">✕</button>
+          </div>
+
+          <!-- Element Filter Pills -->
+          <div class="filter-pills-group" id="element-filters" aria-label="Lọc theo nguyên tố">
+            <button class="filter-pill active" data-filter-type="attribute" data-val="ALL">Tất cả</button>
+            <button class="filter-pill" data-filter-type="attribute" data-val="Glacio">Glacio</button>
+            <button class="filter-pill" data-filter-type="attribute" data-val="Electro">Electro</button>
+            <button class="filter-pill" data-filter-type="attribute" data-val="Aero">Aero</button>
+            <button class="filter-pill" data-filter-type="attribute" data-val="Havoc">Havoc</button>
+            <button class="filter-pill" data-filter-type="attribute" data-val="Spectro">Spectro</button>
+            <button class="filter-pill" data-filter-type="attribute" data-val="Fusion">Fusion</button>
+          </div>
+
+          <!-- Energy Status Filter -->
+          <div class="filter-pills-group" id="energy-filters" aria-label="Lọc theo năng lượng">
+            <button class="filter-pill active" data-filter-type="energyStatus" data-val="ALL">Tất cả năng lượng</button>
+            <button class="filter-pill" data-filter-type="energyStatus" data-val="AVAILABLE">Khả dụng (>0)</button>
+            <button class="filter-pill" data-filter-type="energyStatus" data-val="EMPTY">Cạn kiệt (=0)</button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Character Cards Grid -->
+      <div class="characters-grid" id="characters-grid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal: Character Picker for Slot -->
+  <div class="modal-backdrop" id="modal-character-picker">
+    <div class="modal-window modal-picker-window">
+      <div class="picker-header">
+        <div class="picker-title-area">
+          <span class="stage-badge" id="picker-slot-badge">CHỌN CHO SLOT 1</span>
+          <h2 id="picker-title">Chọn Resonator Cho Đội Hình</h2>
+          <p id="picker-subtitle" style="color: var(--text-muted); font-size: 0.9rem;">Nhấn vào nhân vật để xếp vào vị trí này (-1 năng lượng)</p>
+        </div>
+        <button class="picker-close-btn" id="picker-close-btn" title="Đóng modal">✕</button>
+      </div>
+
+      <!-- Picker Search & Filters -->
+      <div class="picker-controls-bar">
+        <div class="search-box-wrapper" style="max-width: 280px; min-width: 200px;">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="picker-search-input" placeholder="Tìm tên, nguyên tố...">
+          <button class="search-clear-btn" id="picker-search-clear" style="display: none;">✕</button>
+        </div>
+
+        <div class="filter-pills-group" id="picker-element-filters" aria-label="Lọc nguyên tố">
+          <button class="filter-pill active" data-picker-elem="ALL">Tất cả</button>
+          <button class="filter-pill" data-picker-elem="Glacio">Glacio</button>
+          <button class="filter-pill" data-picker-elem="Electro">Electro</button>
+          <button class="filter-pill" data-picker-elem="Aero">Aero</button>
+          <button class="filter-pill" data-picker-elem="Havoc">Havoc</button>
+          <button class="filter-pill" data-picker-elem="Spectro">Spectro</button>
+          <button class="filter-pill" data-picker-elem="Fusion">Fusion</button>
+        </div>
+
+        <div class="filter-pills-group" id="picker-status-filters" aria-label="Lọc năng lượng">
+          <button class="filter-pill active" data-picker-status="ALL">Tất cả</button>
+          <button class="filter-pill" data-picker-status="AVAILABLE">Còn NL (>0)</button>
+        </div>
+      </div>
+
+      <!-- Picker Character Grid -->
+      <div class="picker-characters-grid" id="picker-characters-grid">
+        <!-- Rendered by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Run Success / Deployed Squad Report -->
+  <div class="modal-backdrop" id="modal-deploy-success">
+    <div class="modal-window">
+      <div class="modal-header">
+        <span class="stage-badge" id="modal-stage-title" style="margin: 0 auto;">ĐÃ LƯU TEAM</span>
+        <h2>Lưu Team Thành Công!</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Đội hình đã được lưu vào danh sách team. Mỗi thành viên đã tiêu hao 1 điểm năng lượng.</p>
+      </div>
+
+      <div class="modal-deployed-team-row" id="modal-team-row">
+        <!-- Filled by JS -->
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="modal-btn-stay">Tạo Thêm Team Khác</button>
+        <button class="btn btn-primary" id="modal-btn-next-stage">Xem Danh Sách Team ➔</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Run History -->
+  <div class="modal-backdrop" id="modal-history">
+    <div class="modal-window" style="max-width: 720px;">
+      <div class="modal-header">
+        <h2>Danh Sách Team Đã Lưu</h2>
+        <p style="color: var(--text-muted); font-size: 0.92rem;">Các đội hình bạn đã sắp xếp. Bấm Sửa để chỉnh sửa hoặc Xóa để loại bỏ.</p>
+      </div>
+
+      <div id="history-runs-list" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+        <!-- Filled by JS -->
+      </div>
+
+      <div class="modal-footer" style="margin-top: 10px;">
+        <button class="btn btn-secondary" id="modal-btn-close-history">Đóng</button>
+        <button class="btn btn-danger-ghost" id="modal-btn-reset-history">Xóa Tất Cả Team</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main JavaScript App Entry -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

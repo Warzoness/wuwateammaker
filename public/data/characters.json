@@ -1,0 +1,722 @@
+[
+  {
+    "name": "Aalto",
+    "filename": "Aalto.png",
+    "rarity": "4 Stars",
+    "attribute": "Aero",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Aemeath",
+    "filename": "Aemeath.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Augusta",
+    "filename": "Augusta.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Baizhi",
+    "filename": "Baizhi.png",
+    "rarity": "4 Stars",
+    "attribute": "Glacio",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Brant",
+    "filename": "Brant.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Buling",
+    "filename": "Buling.png",
+    "rarity": "4 Stars",
+    "attribute": "Electro",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Calcharo",
+    "filename": "Calcharo.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Camellya",
+    "filename": "Camellya.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Cantarella",
+    "filename": "Cantarella.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Carlotta",
+    "filename": "Carlotta.png",
+    "rarity": "5 Stars",
+    "attribute": "Glacio",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Cartethyia",
+    "filename": "Cartethyia.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Changli",
+    "filename": "Changli.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Chisa",
+    "filename": "Chisa.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Chixia",
+    "filename": "Chixia.png",
+    "rarity": "4 Stars",
+    "attribute": "Fusion",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Ciaccona",
+    "filename": "Ciaccona.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Danjin",
+    "filename": "Danjin.png",
+    "rarity": "4 Stars",
+    "attribute": "Havoc",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Denia",
+    "filename": "Denia.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Rectifier",
+    "dimensions": [
+      200,
+      200
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Encore",
+    "filename": "Encore.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Galbrena",
+    "filename": "Galbrena.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Hiyuki",
+    "filename": "Hiyuki.png",
+    "rarity": "5 Stars",
+    "attribute": "Glacio",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Hsin",
+    "filename": "Hsin.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Iuno",
+    "filename": "Iuno.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Jianxin",
+    "filename": "Jianxin.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Jingran",
+    "filename": "Jingran.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Jinhsi",
+    "filename": "Jinhsi.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Jiyan",
+    "filename": "Jiyan.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Lingyang",
+    "filename": "Lingyang.png",
+    "rarity": "5 Stars",
+    "attribute": "Glacio",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Lucilla",
+    "filename": "Lucilla.png",
+    "rarity": "5 Stars",
+    "attribute": "Glacio",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Lucy",
+    "filename": "Lucy.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Lumi",
+    "filename": "Lumi.png",
+    "rarity": "4 Stars",
+    "attribute": "Electro",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Lupa",
+    "filename": "Lupa.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Luuk Herssen",
+    "filename": "Luuk Herssen.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Lynae",
+    "filename": "Lynae.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Mornye",
+    "filename": "Mornye.png",
+    "rarity": "5 Stars",
+    "attribute": "Fusion",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Mortefi",
+    "filename": "Mortefi.png",
+    "rarity": "4 Stars",
+    "attribute": "Fusion",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Phoebe",
+    "filename": "Phoebe.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Phrolova",
+    "filename": "Phrolova.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Qingxiao",
+    "filename": "Qingxiao.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Qiuyuan",
+    "filename": "Qiuyuan.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Rebecca",
+    "filename": "Rebecca.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Pistols",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Roccia",
+    "filename": "Roccia.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Rover-Aero",
+    "filename": "Rover-Aero.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Rover-Electro",
+    "filename": "Rover-Electro.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Rover-Havoc",
+    "filename": "Rover-Havoc.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Rover-Spectro",
+    "filename": "Rover-Spectro.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Sanhua",
+    "filename": "Sanhua.png",
+    "rarity": "4 Stars",
+    "attribute": "Glacio",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Shorekeeper",
+    "filename": "Shorekeeper.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Sigrika",
+    "filename": "Sigrika.png",
+    "rarity": "5 Stars",
+    "attribute": "Aero",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Suisui",
+    "filename": "Suisui.png",
+    "rarity": "5 Stars",
+    "attribute": "Glacio",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Taoqi",
+    "filename": "Taoqi.png",
+    "rarity": "4 Stars",
+    "attribute": "Havoc",
+    "weapon": "Broadblade",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Verina",
+    "filename": "Verina.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Xiangli Yao",
+    "filename": "Xiangli Yao.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Yangyang",
+    "filename": "Yangyang.png",
+    "rarity": "4 Stars",
+    "attribute": "Aero",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Yangyang: Xuanling",
+    "filename": "Yangyang Xuanling.png",
+    "rarity": "5 Stars",
+    "attribute": "Havoc",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Yinlin",
+    "filename": "Yinlin.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Youhu",
+    "filename": "Youhu.png",
+    "rarity": "4 Stars",
+    "attribute": "Glacio",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Yuanwu",
+    "filename": "Yuanwu.png",
+    "rarity": "4 Stars",
+    "attribute": "Electro",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Zani",
+    "filename": "Zani.png",
+    "rarity": "5 Stars",
+    "attribute": "Spectro",
+    "weapon": "Gauntlets",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Zhezhi",
+    "filename": "Zhezhi.png",
+    "rarity": "5 Stars",
+    "attribute": "Glacio",
+    "weapon": "Rectifier",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  },
+  {
+    "name": "Suoming",
+    "filename": "Suoming.png",
+    "rarity": "5 Stars",
+    "attribute": "Electro",
+    "weapon": "Sword",
+    "dimensions": [
+      256,
+      256
+    ],
+    "status": "success"
+  }
+]

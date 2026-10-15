@@ -1,0 +1,98 @@
+/**
+ * Base styles, resets, and cosmic cyber atmospheric background
+ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Atmospheric Game Background */
+body {
+  background-image: 
+    radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 85% 15%, rgba(245, 196, 81, 0.07) 0%, transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 50%),
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+  background-position: 0 0, 0 0, 0 0, -1px -1px, -1px -1px;
+  background-attachment: fixed;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(10, 15, 25, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(245, 196, 81, 0.25);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 196, 81, 0.5);
+}
+
+/* Typography elements */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-highlight);
+  font-weight: 700;
+}
+
+button {
+  font-family: var(--font-display);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  transition: all var(--transition-normal);
+  user-select: none;
+}
+
+input, select {
+  font-family: var(--font-body);
+  color: var(--text-main);
+  outline: none;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+input:focus, select:focus {
+  border-color: var(--wuwa-gold);
+  box-shadow: 0 0 10px rgba(245, 196, 81, 0.3);
+}
+
+/* Utility Glass Containers */
+.glass-panel {
+  background: var(--bg-glass);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}

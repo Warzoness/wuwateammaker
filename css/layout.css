@@ -1,0 +1,345 @@
+/**
+ * Layout and structural grid styles
+ */
+
+.app-container {
+  max-width: 1540px;
+  margin: 0 auto;
+  padding: 16px 24px 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* ==========================================================================
+   App Header & Mode Navigation
+   ========================================================================== */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  background: rgba(13, 18, 30, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(245, 196, 81, 0.2), rgba(56, 189, 248, 0.2));
+  border: 1px solid var(--border-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 16px rgba(245, 196, 81, 0.2);
+}
+
+.brand-icon svg {
+  width: 26px;
+  height: 26px;
+  fill: var(--wuwa-gold);
+}
+
+.brand-text h1 {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, #ffffff 40%, var(--wuwa-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+
+.brand-text span {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--wuwa-cyan);
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+/* Navigation Modes (Tab Bar) */
+.mode-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(8, 11, 18, 0.7);
+  padding: 5px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.mode-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  position: relative;
+  transition: all var(--transition-normal);
+}
+
+.mode-tab:hover:not(.disabled) {
+  color: var(--text-highlight);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.mode-tab.active {
+  color: #0b0f19;
+  background: linear-gradient(135deg, var(--wuwa-gold-bright), var(--wuwa-gold));
+  box-shadow: 0 0 16px rgba(245, 196, 81, 0.4);
+  font-weight: 700;
+}
+
+.mode-tab.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.tag-badge {
+  font-size: 0.65rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  font-family: var(--font-body);
+  font-weight: 500;
+}
+
+.header-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.icon-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+  color: var(--wuwa-gold);
+  border-color: var(--border-active);
+  background: rgba(245, 196, 81, 0.1);
+}
+
+.icon-btn.active {
+  color: var(--wuwa-cyan);
+  border-color: var(--border-cyan);
+}
+
+/* ==========================================================================
+   Matrix Team Formation Arena (Top Section)
+   ========================================================================== */
+.matrix-arena-section {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(245, 196, 81, 0.2);
+}
+
+.matrix-arena-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--wuwa-gold), var(--wuwa-cyan), transparent);
+}
+
+.arena-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.arena-title-group {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 14px;
+  border-radius: 20px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid var(--border-cyan);
+  color: var(--wuwa-cyan);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.08em;
+}
+
+.arena-title-group h2 {
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+
+.arena-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* 3 Slots Grid */
+.team-slots-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  min-height: 290px;
+}
+
+/* Arena Bottom Action Bar */
+.arena-footer-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-subtle);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.squad-completion-status {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.status-indicator-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.status-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all var(--transition-normal);
+}
+
+.status-dot.filled {
+  background: var(--wuwa-gold);
+  border-color: #fff;
+  box-shadow: 0 0 10px var(--wuwa-gold);
+}
+
+.status-text {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.status-text strong {
+  color: var(--wuwa-gold);
+}
+
+/* ==========================================================================
+   Character Pool Section (Bottom Section)
+   ========================================================================== */
+.character-pool-section {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.pool-title-group {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.pool-title-group h2 {
+  font-size: 1.4rem;
+}
+
+.pool-counter {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--text-dim);
+}
+
+.pool-counter strong {
+  color: var(--wuwa-gold);
+}
+
+/* Character Grid */
+.characters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 16px;
+  max-height: 680px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .team-slots-container {
+    grid-template-columns: 1fr;
+  }
+  .app-header {
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-container {
+    padding: 10px 12px 40px;
+  }
+  .characters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .mode-nav {
+    flex-wrap: wrap;
+  }
+}

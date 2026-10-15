@@ -1,0 +1,70 @@
+/**
+ * Animations & Micro-Interactions for Wuthering Waves UI
+ */
+
+@keyframes pulse-gold-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(245, 196, 81, 0.4), 0 0 40px rgba(245, 196, 81, 0.2);
+    border-color: #fff;
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(245, 196, 81, 0.7), 0 0 60px rgba(245, 196, 81, 0.4);
+    border-color: var(--wuwa-gold-bright);
+  }
+}
+
+@keyframes shine-sweep {
+  0% {
+    transform: translate(-150%, -150%) rotate(30deg);
+  }
+  30%, 100% {
+    transform: translate(150%, 150%) rotate(30deg);
+  }
+}
+
+@keyframes float-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes slot-placed-pop {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  60% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop-in {
+  animation: slot-placed-pop 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+.radar-ring {
+  animation: radar-pulse 3s infinite ease-in-out;
+}
