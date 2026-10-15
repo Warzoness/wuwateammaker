@@ -212,7 +212,8 @@
 
   <!-- Modal: Run Success / Deployed Squad Report -->
   <div class="modal-backdrop" id="modal-deploy-success">
-    <div class="modal-window">
+    <div class="modal-window modal-deploy-window" style="position: relative;">
+      <button class="picker-close-btn" id="modal-btn-close-deploy-x" title="Đóng modal" style="position: absolute; top: 16px; right: 16px;">✕</button>
       <div class="modal-header">
         <span class="stage-badge" id="modal-stage-title" style="margin: 0 auto;">ĐÃ LƯU TEAM</span>
         <h2>Lưu Team Thành Công!</h2>
@@ -232,13 +233,16 @@
 
   <!-- Modal: Run History -->
   <div class="modal-backdrop" id="modal-history">
-    <div class="modal-window" style="max-width: 720px;">
-      <div class="modal-header">
-        <h2>Danh Sách Team Đã Lưu</h2>
-        <p style="color: var(--text-muted); font-size: 0.92rem;">Các đội hình bạn đã sắp xếp. Bấm Sửa để chỉnh sửa hoặc Xóa để loại bỏ.</p>
+    <div class="modal-window modal-history-window">
+      <div class="modal-header-history">
+        <div class="modal-header-text">
+          <h2>Danh Sách Team Đã Lưu</h2>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">Các đội hình bạn đã sắp xếp. Bấm Sửa để chỉnh sửa hoặc Xóa để loại bỏ.</p>
+        </div>
+        <button class="picker-close-btn" id="modal-btn-close-history-x" title="Đóng modal">✕</button>
       </div>
 
-      <div id="history-runs-list" style="max-height: 380px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px;">
+      <div id="history-runs-list" class="history-runs-list">
         <!-- Filled by JS -->
       </div>
 

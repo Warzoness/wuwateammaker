@@ -33,6 +33,7 @@ const soundIcon = document.getElementById('sound-icon');
 const btnViewTeams = document.getElementById('btn-view-history');
 
 const modalSaveSuccess = document.getElementById('modal-deploy-success');
+const modalBtnCloseDeployX = document.getElementById('modal-btn-close-deploy-x');
 const modalTeamRow = document.getElementById('modal-team-row');
 const modalSaveTitle = document.getElementById('modal-stage-title');
 const modalBtnNewTeam = document.getElementById('modal-btn-stay');
@@ -41,6 +42,7 @@ const modalBtnDone = document.getElementById('modal-btn-next-stage');
 const modalTeamList = document.getElementById('modal-history');
 const teamListContainer = document.getElementById('history-runs-list');
 const modalBtnCloseTeams = document.getElementById('modal-btn-close-history');
+const modalBtnCloseTeamsX = document.getElementById('modal-btn-close-history-x');
 const modalBtnClearAll = document.getElementById('modal-btn-reset-history');
 
 const modalCharacterPicker = document.getElementById('modal-character-picker');
@@ -667,6 +669,12 @@ function setupEvents() {
     sound.playSelect();
   });
   modalBtnCloseTeams.addEventListener('click', () => modalTeamList.classList.remove('open'));
+  if (modalBtnCloseTeamsX) {
+    modalBtnCloseTeamsX.addEventListener('click', () => modalTeamList.classList.remove('open'));
+  }
+  if (modalBtnCloseDeployX) {
+    modalBtnCloseDeployX.addEventListener('click', () => modalSaveSuccess.classList.remove('open'));
+  }
   modalBtnClearAll.addEventListener('click', () => {
     if (confirm('Xóa toàn bộ danh sách team đã lưu và bắt đầu lại?')) {
       state.clearAllTeams();
@@ -728,31 +736,31 @@ function showSaveSuccessModal(record) {
 function renderTeamListModal() {
   teamListContainer.innerHTML = '';
   if (!state.savedTeams.length) {
-    teamListContainer.innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-dim)">Chưa có team nào được lưu. Hãy xây đội hình và bấm Lưu Team!</div>';
+    teamListContainer.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--text-dim);font-size:0.95rem">Chưa có team nào được lưu. Hãy chọn 3 Resonator và nhấn "Lưu Team"!</div>';
     return;
   }
   const frag = document.createDocumentFragment();
-  state.savedTeams.forEach((team, idx) => {
+  state.savedTeams.forEach((team) => {
     const item = document.createElement('div');
-    item.style.cssText = 'background:rgba(0,0,0,.4);border:1px solid var(--border-subtle);border-radius:var(--radius-md);padding:14px 16px;display:flex;flex-direction:column;gap:10px';
+    item.className = 'history-team-card';
     item.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
         <div>
-          <div style="font-family:var(--font-display);font-weight:700;color:var(--wuwa-gold);font-size:1.1rem">🏷️ ${team.name}</div>
-          <div style="font-size:.75rem;color:var(--text-dim)">${team.date} lúc ${team.timestamp}</div>
+          <div style="font-family:var(--font-display);font-weight:700;color:var(--wuwa-gold);font-size:1.15rem">🏷️ ${team.name}</div>
+          <div style="font-size:.78rem;color:var(--text-dim)">${team.date} lúc ${team.timestamp}</div>
         </div>
         <div style="display:flex;gap:8px">
-          <button class="btn btn-secondary" data-edit-team="${team.id}" style="font-size:.78rem;padding:5px 12px">✏️ Sửa</button>
-          <button class="btn btn-danger-ghost" data-delete-team="${team.id}" style="font-size:.78rem;padding:5px 12px">🗑️ Xóa</button>
+          <button class="btn btn-secondary" data-edit-team="${team.id}" style="font-size:.82rem;padding:6px 14px">✏️ Sửa</button>
+          <button class="btn btn-danger-ghost" data-delete-team="${team.id}" style="font-size:.82rem;padding:6px 14px">🗑️ Xóa</button>
         </div>
       </div>
-      <div style="display:flex;gap:14px;flex-wrap:wrap">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
         ${team.members.map(m => `
-          <div style="display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.04);padding:4px 10px;border-radius:8px">
-            <img src="${m.image}" alt="${m.name}" style="width:36px;height:36px;border-radius:6px;object-fit:contain;background:rgba(255,255,255,.05)">
-            <div>
-              <span style="font-size:.85rem;font-weight:600">${m.name}</span>
-              <span class="element-pill ${m.attribute.toLowerCase()}" style="font-size:.6rem;padding:1px 5px;margin-left:4px">${m.attribute}</span>
+          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:6px 12px;border-radius:10px;flex:1 1 140px;min-width:130px">
+            <img src="${m.image}" alt="${m.name}" style="width:42px;height:42px;border-radius:8px;object-fit:contain;background:rgba(0,0,0,.3);flex-shrink:0">
+            <div style="display:flex;flex-direction:column;gap:2px;overflow:hidden">
+              <span style="font-size:.88rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}</span>
+              <span class="element-pill ${m.attribute.toLowerCase()}" style="font-size:.65rem;padding:1px 6px;align-self:flex-start">${m.attribute}</span>
             </div>
           </div>`).join('')}
       </div>
