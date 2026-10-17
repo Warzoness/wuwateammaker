@@ -236,19 +236,59 @@
     <div class="modal-window modal-history-window">
       <div class="modal-header-history">
         <div class="modal-header-text">
-          <h2>Danh Sách Team Đã Lưu</h2>
-          <p style="color: var(--text-muted); font-size: 0.92rem;">Các đội hình bạn đã sắp xếp. Bấm Sửa để chỉnh sửa hoặc Xóa để loại bỏ.</p>
+          <div class="history-title-row">
+            <h2>Danh Sách Team Đã Lưu</h2>
+            <span class="stage-badge" id="history-total-badge">0 TEAM</span>
+          </div>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">Các đội hình bạn đã sắp xếp. Bấm Sửa để nạp lại hoặc Xóa để loại bỏ.</p>
         </div>
         <button class="picker-close-btn" id="modal-btn-close-history-x" title="Đóng modal">✕</button>
       </div>
 
-      <div id="history-runs-list" class="history-runs-list">
+      <!-- Controls & View Mode Bar -->
+      <div class="history-toolbar">
+        <div class="search-box-wrapper history-search-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="history-search-input" placeholder="Tìm theo tên team, Resonator...">
+          <button class="search-clear-btn" id="history-search-clear" style="display: none;">✕</button>
+        </div>
+
+        <div class="history-view-switcher">
+          <span class="history-view-label">Chế độ xem:</span>
+          <div class="view-toggle-group" id="history-view-toggle" role="radiogroup" aria-label="Chế độ hiển thị team">
+            <button type="button" class="view-toggle-btn active" data-view="compact" id="btn-view-compact" title="Chế độ rút gọn (xem được nhiều team hơn)">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                <rect x="3" y="3" width="7" height="7" rx="1.5"/>
+                <rect x="14" y="3" width="7" height="7" rx="1.5"/>
+                <rect x="3" y="14" width="7" height="7" rx="1.5"/>
+                <rect x="14" y="14" width="7" height="7" rx="1.5"/>
+              </svg>
+              <span>Rút gọn</span>
+            </button>
+            <button type="button" class="view-toggle-btn" data-view="detailed" id="btn-view-detailed" title="Chế độ chi tiết đầy đủ">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <line x1="3" y1="12" x2="21" y2="12"/>
+                <line x1="3" y1="18" x2="21" y2="18"/>
+              </svg>
+              <span>Chi tiết</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="history-runs-list" class="history-runs-list compact-mode">
         <!-- Filled by JS -->
       </div>
 
       <div class="modal-footer" style="margin-top: 10px;">
-        <button class="btn btn-secondary" id="modal-btn-close-history">Đóng</button>
-        <button class="btn btn-danger-ghost" id="modal-btn-reset-history">Xóa Tất Cả Team</button>
+        <div class="history-footer-counter" id="history-footer-counter">
+          Hiển thị: <strong>0</strong> team
+        </div>
+        <div style="display: flex; gap: 10px; align-items: center;">
+          <button class="btn btn-secondary" id="modal-btn-close-history">Đóng</button>
+          <button class="btn btn-danger-ghost" id="modal-btn-reset-history">Xóa Tất Cả Team</button>
+        </div>
       </div>
     </div>
   </div>

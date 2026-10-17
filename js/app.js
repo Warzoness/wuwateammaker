@@ -61,6 +61,12 @@ const teamListContainer = document.getElementById('history-runs-list');
 const modalBtnCloseTeams = document.getElementById('modal-btn-close-history');
 const modalBtnCloseTeamsX = document.getElementById('modal-btn-close-history-x');
 const modalBtnClearAll = document.getElementById('modal-btn-reset-history');
+const btnViewCompact = document.getElementById('btn-view-compact');
+const btnViewDetailed = document.getElementById('btn-view-detailed');
+const historySearchInput = document.getElementById('history-search-input');
+const historySearchClear = document.getElementById('history-search-clear');
+const historyTotalBadge = document.getElementById('history-total-badge');
+const historyFooterCounter = document.getElementById('history-footer-counter');
 
 const modalCharacterPicker = document.getElementById('modal-character-picker');
 const pickerSlotBadge = document.getElementById('picker-slot-badge');
@@ -76,6 +82,8 @@ const pickerCharactersGrid = document.getElementById('picker-characters-grid');
 const cardCache = new Map();
 let activePickerSlotIndex = null;
 let pickerFilter = { search: '', element: 'ALL', status: 'ALL' };
+let historyViewMode = localStorage.getItem('wuwa_team_view_mode') || 'compact';
+let historySearchQuery = '';
 let pendingRender = false;
 let pickerPending = false;
 
@@ -679,12 +687,47 @@ function setupEvents() {
     sound.playSelect();
   });
 
-  /* ── Team List ───────────────────────────────────────────────────── */
-  btnViewTeams.addEventListener('click', () => {
+  /* ── Team List & History Controls ─────────────────────────────────── */
+  const openTeamListModal = () => {
     renderTeamListModal();
     modalTeamList.classList.add('open');
     sound.playSelect();
-  });
+  };
+
+  btnViewTeams.addEventListener('click', openTeamListModal);
+  if (teamCountDisplay) {
+    teamCountDisplay.style.cursor = 'pointer';
+    teamCountDisplay.title = 'Nhấn để xem danh sách đội hình đã lưu';
+    teamCountDisplay.addEventListener('click', openTeamListModal);
+  }
+
+  if (btnViewCompact) {
+    btnViewCompact.addEventListener('click', () => setHistoryViewMode('compact'));
+  }
+  if (btnViewDetailed) {
+    btnViewDetailed.addEventListener('click', () => setHistoryViewMode('detailed'));
+  }
+
+  if (historySearchInput) {
+    historySearchInput.addEventListener('input', (e) => {
+      historySearchQuery = e.target.value.trim().toLowerCase();
+      if (historySearchClear) {
+        historySearchClear.style.display = historySearchQuery ? 'block' : 'none';
+      }
+      renderTeamListModal();
+    });
+  }
+
+  if (historySearchClear) {
+    historySearchClear.addEventListener('click', () => {
+      historySearchInput.value = '';
+      historySearchQuery = '';
+      historySearchClear.style.display = 'none';
+      historySearchInput.focus();
+      renderTeamListModal();
+    });
+  }
+
   modalBtnCloseTeams.addEventListener('click', () => modalTeamList.classList.remove('open'));
   if (modalBtnCloseTeamsX) {
     modalBtnCloseTeamsX.addEventListener('click', () => modalTeamList.classList.remove('open'));
@@ -711,9 +754,11 @@ function setupEvents() {
     }
     const deleteBtn = e.target.closest('[data-delete-team]');
     if (deleteBtn) {
-      state.deleteTeam(deleteBtn.dataset.deleteTeam);
-      renderTeamListModal();
-      sound.playRemove();
+      if (confirm('Bạn có chắc muốn xóa đội hình này?')) {
+        state.deleteTeam(deleteBtn.dataset.deleteTeam);
+        renderTeamListModal();
+        sound.playRemove();
+      }
     }
   });
 
@@ -731,6 +776,13 @@ function setupEvents() {
 /* ═══════════════════════════════════════════════════════════════════════════
    MODALS
    ═══════════════════════════════════════════════════════════════════════════ */
+function setHistoryViewMode(mode) {
+  historyViewMode = mode;
+  localStorage.setItem('wuwa_team_view_mode', mode);
+  sound.playSelect();
+  renderTeamListModal();
+}
+
 function showSaveSuccessModal(record) {
   modalSaveTitle.textContent = `✅ TEAM "${record.name}" ĐÃ LƯU`;
   const frag = document.createDocumentFragment();
@@ -752,38 +804,137 @@ function showSaveSuccessModal(record) {
 
 function renderTeamListModal() {
   teamListContainer.innerHTML = '';
-  if (!state.savedTeams.length) {
-    teamListContainer.innerHTML = '<div style="text-align:center;padding:40px 20px;color:var(--text-dim);font-size:0.95rem">Chưa có team nào được lưu. Hãy chọn 3 Resonator và nhấn "Lưu Team"!</div>';
-    return;
+  const totalTeams = state.savedTeams.length;
+
+  if (historyTotalBadge) {
+    historyTotalBadge.textContent = `${totalTeams} TEAM`;
   }
-  const frag = document.createDocumentFragment();
-  state.savedTeams.forEach((team) => {
-    const item = document.createElement('div');
-    item.className = 'history-team-card';
-    item.innerHTML = `
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
-        <div>
-          <div style="font-family:var(--font-display);font-weight:700;color:var(--wuwa-gold);font-size:1.15rem">🏷️ ${team.name}</div>
-          <div style="font-size:.78rem;color:var(--text-dim)">${team.date} lúc ${team.timestamp}</div>
-        </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-secondary" data-edit-team="${team.id}" style="font-size:.82rem;padding:6px 14px">✏️ Sửa</button>
-          <button class="btn btn-danger-ghost" data-delete-team="${team.id}" style="font-size:.82rem;padding:6px 14px">🗑️ Xóa</button>
-        </div>
-      </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-        ${team.members.map(m => `
-          <div style="display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:6px 12px;border-radius:10px;flex:1 1 140px;min-width:130px">
-            <img src="${m.image}" alt="${m.name}" style="width:42px;height:42px;border-radius:8px;object-fit:contain;background:rgba(0,0,0,.3);flex-shrink:0">
-            <div style="display:flex;flex-direction:column;gap:2px;overflow:hidden">
-              <span style="font-size:.88rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}</span>
-              <span class="element-pill ${m.attribute.toLowerCase()}" style="font-size:.65rem;padding:1px 6px;align-self:flex-start">${m.attribute}</span>
-            </div>
-          </div>`).join('')}
+
+  // Update toggle button states and container classes
+  if (btnViewCompact && btnViewDetailed) {
+    btnViewCompact.classList.toggle('active', historyViewMode === 'compact');
+    btnViewDetailed.classList.toggle('active', historyViewMode === 'detailed');
+  }
+  teamListContainer.classList.toggle('compact-mode', historyViewMode === 'compact');
+  teamListContainer.classList.toggle('detailed-mode', historyViewMode === 'detailed');
+
+  if (!totalTeams) {
+    teamListContainer.innerHTML = `
+      <div class="history-empty-state">
+        <span style="font-size:2.4rem;line-height:1">📋</span>
+        <div style="font-size:1.05rem;font-weight:600;color:var(--text-main)">Chưa có team nào được lưu</div>
+        <div style="font-size:0.88rem;color:var(--text-dim)">Hãy chọn 3 Resonator và nhấn "Lưu Team Vào Danh Sách"!</div>
       </div>
     `;
+    if (historyFooterCounter) historyFooterCounter.innerHTML = 'Hiển thị: <strong>0</strong> team';
+    return;
+  }
+
+  // Filter teams if search query is active
+  let displayTeams = state.savedTeams;
+  if (historySearchQuery) {
+    displayTeams = state.savedTeams.filter(team => {
+      const matchName = team.name.toLowerCase().includes(historySearchQuery);
+      const matchMember = team.members.some(m =>
+        m.name.toLowerCase().includes(historySearchQuery) ||
+        m.attribute.toLowerCase().includes(historySearchQuery)
+      );
+      return matchName || matchMember;
+    });
+  }
+
+  if (historyFooterCounter) {
+    historyFooterCounter.innerHTML = `Hiển thị: <strong>${displayTeams.length}</strong> / ${totalTeams} team`;
+  }
+
+  if (!displayTeams.length) {
+    teamListContainer.innerHTML = `
+      <div class="history-empty-state">
+        <span style="font-size:2.2rem;line-height:1">🔍</span>
+        <div style="font-size:1rem;font-weight:600;color:var(--text-main)">Không tìm thấy đội hình nào</div>
+        <div style="font-size:0.85rem;color:var(--text-dim)">Không có team nào khớp với từ khóa "<strong>${historySearchQuery}</strong>"</div>
+      </div>
+    `;
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+
+  displayTeams.forEach((team) => {
+    // Find absolute 1-based index in state.savedTeams
+    const realIndex = state.savedTeams.findIndex(t => t.id === team.id) + 1;
+    const item = document.createElement('div');
+
+    if (historyViewMode === 'compact') {
+      item.className = 'history-team-card compact';
+      item.innerHTML = `
+        <div class="compact-card-header">
+          <div class="compact-title-group">
+            <span class="compact-team-badge">#${realIndex}</span>
+            <span class="compact-team-name" title="${team.name}">${team.name}</span>
+          </div>
+          <div class="compact-card-actions">
+            <button class="compact-action-btn edit" data-edit-team="${team.id}" title="Sửa đội hình (nạp lại vào ô)">
+              ✏️ Sửa
+            </button>
+            <button class="compact-action-btn delete" data-delete-team="${team.id}" title="Xóa đội hình này">
+              🗑️
+            </button>
+          </div>
+        </div>
+
+        <div class="compact-members-grid">
+          ${team.members.map(m => `
+            <div class="compact-member-item attr-${m.attribute.toLowerCase()}" title="${m.name} (${m.attribute}) — NL còn: ${m.remainingEnergy}">
+              <div class="compact-avatar-wrapper attr-${m.attribute.toLowerCase()}">
+                <img src="${m.image}" alt="${m.name}" class="compact-avatar-img" loading="lazy">
+                <span class="compact-attr-badge attr-${m.attribute.toLowerCase()}">${m.attribute.slice(0, 3)}</span>
+              </div>
+              <span class="compact-member-name">${m.name}</span>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="compact-card-footer">
+          <span class="compact-date-text">🕒 ${team.date} ${team.timestamp}</span>
+        </div>
+      `;
+    } else {
+      // Detailed Mode
+      item.className = 'history-team-card detailed';
+      item.innerHTML = `
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px">
+              <span class="compact-team-badge">#${realIndex}</span>
+              <div style="font-family:var(--font-display);font-weight:700;color:var(--wuwa-gold);font-size:1.15rem">🏷️ ${team.name}</div>
+            </div>
+            <div style="font-size:.78rem;color:var(--text-dim);margin-top:2px">📅 ${team.date} lúc ${team.timestamp}</div>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-secondary" data-edit-team="${team.id}" style="font-size:.82rem;padding:6px 14px">✏️ Sửa</button>
+            <button class="btn btn-danger-ghost" data-delete-team="${team.id}" style="font-size:.82rem;padding:6px 14px">🗑️ Xóa</button>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+          ${team.members.map(m => `
+            <div style="display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);padding:8px 12px;border-radius:10px;flex:1 1 140px;min-width:130px">
+              <img src="${m.image}" alt="${m.name}" style="width:44px;height:44px;border-radius:8px;object-fit:contain;background:rgba(0,0,0,.3);flex-shrink:0">
+              <div style="display:flex;flex-direction:column;gap:3px;overflow:hidden">
+                <span style="font-size:.88rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${m.name}</span>
+                <div style="display:flex;align-items:center;gap:6px">
+                  <span class="element-pill ${m.attribute.toLowerCase()}" style="font-size:.65rem;padding:1px 6px">${m.attribute}</span>
+                  <span style="font-size:.75rem;color:var(--text-dim)">NL: <strong style="color:var(--wuwa-gold)">${m.remainingEnergy}</strong></span>
+                </div>
+              </div>
+            </div>`).join('')}
+        </div>
+      `;
+    }
+
     frag.appendChild(item);
   });
+
   teamListContainer.appendChild(frag);
 }
 
