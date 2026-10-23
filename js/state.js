@@ -238,16 +238,17 @@ export class AppState {
     return false;
   }
 
-  // Save current squad as a new team or update existing
+  // Save current squad as a new team or update existing (min 1 character required)
   saveTeam(teamName) {
-    if (!this.isSquadComplete()) return false;
+    if (this.getFilledSlotCount() === 0) return false;
 
     const teamRecord = {
       id: this.editingTeamId || `team-${Date.now()}`,
       name: teamName || `Team ${this.savedTeams.length + 1}`,
       timestamp: new Date().toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' }),
       date: new Date().toLocaleDateString('vi-VN'),
-      members: this.currentSquad.map(c => ({
+      // Filter out empty slots before saving
+      members: this.currentSquad.filter(c => c !== null).map(c => ({
         id: c.id,
         name: c.name,
         image: c.image,
@@ -261,7 +262,12 @@ export class AppState {
     if (this.editingTeamId) {
       // Update existing team
       const idx = this.savedTeams.findIndex(t => t.id === this.editingTeamId);
-      if (idx !== -1) this.savedTeams[idx] = teamRecord;
+      if (idx !== -1) {
+        this.savedTeams[idx] = teamRecord;
+      } else {
+        // Team was removed externally — add as new
+        this.savedTeams.push(teamRecord);
+      }
       this.editingTeamId = null;
     } else {
       // Add new team
@@ -302,17 +308,21 @@ export class AppState {
 
     // Load team members into slots.
     // Energy was already spent (-1) when this team was originally saved.
-    // We restore that 1 energy first, then deduct it again for the slot,
-    // so the net effect is zero — and ALL members are guaranteed to load.
+    // We restore that 1 energy first so each member has enough to be slotted again,
+    // then deduct 1 for occupying the slot — net effect = zero energy change.
     team.members.forEach((m, idx) => {
       const char = this.characters.find(c => c.id === m.id);
-      if (char) {
-        // Restore 1 energy (undo the deduction from when the team was saved)
-        char.currentEnergy = Math.min(char.maxEnergy, char.currentEnergy + 1);
-        // Deduct 1 energy for occupying this slot
+      if (!char) return;
+
+      // Restore 1 energy (undo the deduction from when the team was originally saved)
+      char.currentEnergy = Math.min(char.maxEnergy, char.currentEnergy + 1);
+
+      // Only assign if the character actually has energy available
+      if (char.currentEnergy > 0) {
         char.currentEnergy = Math.max(0, char.currentEnergy - 1);
         this.currentSquad[idx] = char;
       }
+      // If still 0 (e.g. maxEnergy = 0), slot stays null — squad will be incomplete
     });
 
     this.editingTeamId = teamId;

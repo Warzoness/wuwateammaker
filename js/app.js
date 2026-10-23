@@ -217,7 +217,6 @@ function rebuildSlot(index, char) {
    ═══════════════════════════════════════════════════════════════════════════ */
 function updateArenaStatus() {
   const filledCount = state.getFilledSlotCount();
-  const isComplete = state.isSquadComplete();
   const teamCount = state.savedTeams.length;
   const isEditing = state.editingTeamId !== null;
 
@@ -228,17 +227,16 @@ function updateArenaStatus() {
     dot.classList.toggle('filled', state.currentSquad[i] !== null)
   );
 
-  if (isComplete) {
-    squadStatusText.innerHTML = `Tiến độ: <strong>3 / 3</strong> nhân vật — <span style="color:var(--status-success)">ĐỘI HÌNH ĐÃ SẴN SÀNG!</span>`;
+  if (filledCount > 0) {
+    squadStatusText.innerHTML = `Tiến độ: <strong>${filledCount} / 3</strong> nhân vật — <span style="color:var(--status-success)">Sẵn sàng lưu!</span>`;
     btnSaveTeam.disabled = false;
     btnSaveTeam.classList.add('ready');
     saveBtnText.textContent = isEditing ? '💾 CẬP NHẬT TEAM ➔' : '💾 LƯU TEAM VÀO DANH SÁCH ➔';
   } else {
-    const needed = 3 - filledCount;
-    squadStatusText.innerHTML = `Tiến độ: <strong>${filledCount} / 3</strong> nhân vật — (Cần thêm ${needed} nhân vật)`;
+    squadStatusText.innerHTML = `Tiến độ: <strong>0 / 3</strong> nhân vật — (Chọn ít nhất 1 nhân vật để lưu)`;
     btnSaveTeam.disabled = true;
     btnSaveTeam.classList.remove('ready');
-    saveBtnText.textContent = `Cần Đủ 3 Nhân Vật Để Lưu Team (Còn thiếu ${needed})`;
+    saveBtnText.textContent = 'Chọn Ít Nhất 1 Nhân Vật Để Lưu Team';
   }
 }
 
@@ -663,7 +661,7 @@ function setupEvents() {
 
   /* ── Save Team ──────────────────────────────────────────────────── */
   btnSaveTeam.addEventListener('click', () => {
-    if (!state.isSquadComplete()) { sound.playError(); return; }
+    if (state.getFilledSlotCount() === 0) { sound.playError(); return; }
     const defaultName = state.editingTeamId
       ? (state.savedTeams.find(t => t.id === state.editingTeamId)?.name || 'Team')
       : `Team ${state.savedTeams.length + 1}`;
