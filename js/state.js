@@ -276,6 +276,17 @@ export class AppState {
 
   // Delete a saved team by id
   deleteTeam(teamId) {
+    const team = this.savedTeams.find(t => t.id === teamId);
+    if (team) {
+      // Refund 1 energy to each member of the deleted team
+      // (only if they are NOT currently in the active squad to avoid double-refund)
+      team.members.forEach(m => {
+        const char = this.characters.find(c => c.id === m.id);
+        if (char && !this.isCharacterInSquad(char.id)) {
+          char.currentEnergy = Math.min(char.maxEnergy, char.currentEnergy + 1);
+        }
+      });
+    }
     this.savedTeams = this.savedTeams.filter(t => t.id !== teamId);
     if (this.editingTeamId === teamId) this.editingTeamId = null;
     this.notify();
@@ -286,13 +297,19 @@ export class AppState {
     const team = this.savedTeams.find(t => t.id === teamId);
     if (!team) return;
 
-    // Clear current squad first (refund energy)
+    // Clear current squad first (refund energy to currently slotted chars)
     this.clearSquad();
 
-    // Load team members into slots
+    // Load team members into slots.
+    // Energy was already spent (-1) when this team was originally saved.
+    // We restore that 1 energy first, then deduct it again for the slot,
+    // so the net effect is zero — and ALL members are guaranteed to load.
     team.members.forEach((m, idx) => {
       const char = this.characters.find(c => c.id === m.id);
-      if (char && char.currentEnergy > 0) {
+      if (char) {
+        // Restore 1 energy (undo the deduction from when the team was saved)
+        char.currentEnergy = Math.min(char.maxEnergy, char.currentEnergy + 1);
+        // Deduct 1 energy for occupying this slot
         char.currentEnergy = Math.max(0, char.currentEnergy - 1);
         this.currentSquad[idx] = char;
       }

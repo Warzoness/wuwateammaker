@@ -749,6 +749,8 @@ function setupEvents() {
     if (editBtn) {
       state.editTeam(editBtn.dataset.editTeam);
       modalTeamList.classList.remove('open');
+      // Pre-fill the global energy input with the current defaultMaxEnergy
+      if (globalEnergyInput) globalEnergyInput.value = state.defaultMaxEnergy;
       sound.playSelect();
       return;
     }
